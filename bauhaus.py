@@ -17,7 +17,7 @@ df.to_excel("comp.xlsx", encoding="utf_8_sig", index=False)"""
 
 
 # Get the ids of the products to search them in a web page.
-df = pd.read_excel("KW19.xlsx")
+df = pd.read_excel("Refs to parse.xlsx")
 list_of_ids = df['Ref'].to_list()
 list_of_ids = [str(x) for x in list_of_ids]
 
@@ -25,7 +25,7 @@ list_of_ids = [str(x) for x in list_of_ids]
 # Search on the web and save the results in a list
 final_titles = []
 final_urls = []
-for num in list_of_ids:
+for num in list_of_ids[:100]:
     search_url = "https://www.bauhaus.es/buscar/productos?text=" + num
     response = requests.get(search_url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -46,5 +46,5 @@ final_urls = ['https://www.bauhaus.es' + y for y in final_urls]
 
 
 #Save it to a new excel
-df2 = pd.DataFrame(list(zip(final_titles, final_urls)), columns =['Nombre de producto', 'urls'])
-df2.to_excel('lista de productos.xlsx', encoding="utf_8_sig", index=False)
+df2 = pd.DataFrame(list(zip(final_titles, final_urls)), columns =['Product name', 'urls'])
+df2.to_excel('Products list.xlsx', encoding="utf_8_sig", index=False)
