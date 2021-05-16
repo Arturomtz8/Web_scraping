@@ -2,20 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-#Obtener los id's para usarlos en el buscador
-"""df = pd.read_excel('KW19.xlsx')
-df['ids'] = df['url'].str[:8]
-df.to_excel("prueba.xlsx", encoding="utf_8_sig", index=False)"""
-
-
-
-
-"""df = pd.read_excel('KW19.xlsx')
-df['match']=df.ids.str.endswith(';').map({True:'Y',False:'N'})
-df.to_excel("comp.xlsx", encoding="utf_8_sig", index=False)"""
-
-
-
 # Get the ids of the products to search them in a web page.
 df = pd.read_excel("Refs to parse.xlsx")
 list_of_ids = df['Ref'].to_list()
